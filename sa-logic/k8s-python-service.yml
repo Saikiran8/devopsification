@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service
+  namespace: k8s
+  labels:
+    app: python-app
+spec:
+  type: NodePort
+  ports:
+  - port: 81
+    targetPort: 8443
+    nodePort: 30002
+  selector:
+    app: python-app

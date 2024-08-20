@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+  namespace: k8s
+  labels:
+    app: python-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-container
+        image: saiki8/sa-python:sa-python
+        ports:
+        - containerPort: 8443
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"

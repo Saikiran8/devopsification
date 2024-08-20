@@ -1,0 +1,32 @@
+#k8s deployment has 4 main parts 1.apiVersion 2.kind 3.metadata 4.spec 
+# inside spec we will have template.containers.image - here we will specify image details
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+  namespace: k8s
+  labels:
+    app: react-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+      - name: react-container
+        image: saiki8/sa-react:latest
+        env:
+        - name: JAVA_URL
+          value: "http://java-service.k8s.svc.cluster.local/sentiment"
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
