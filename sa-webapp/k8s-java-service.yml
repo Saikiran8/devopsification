@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: java-service
+  name: java-app-service
   namespace: k8s
   labels:
     app: java-app
 spec:
   type: NodePort
   ports:
-  - port: 80
+  - port: 8080
     targetPort: 8080
     nodePort: 30003
   selector:

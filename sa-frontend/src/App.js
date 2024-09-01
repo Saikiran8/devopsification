@@ -10,9 +10,8 @@ const style = {
   marginLeft: 12,
 };
 
-const sentimentUrl = process.env.JAVA_URL;
-// const sentimentUrl = 'http://localhost:8080/sentiment';
-
+const sentimentUrl = process.env.REACT_APP_API_URL;
+// const sentimentUrl = 'http://localhost:8081/sentiment';
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class App extends Component {
 
   analyzeSentence() {
     console.log('Sentiment URL:', sentimentUrl);
-    fetch(sentimentUrl, {
+    fetch(`${sentimentUrl}/sentiment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

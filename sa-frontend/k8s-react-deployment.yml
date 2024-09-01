@@ -20,10 +20,16 @@ spec:
     spec:
       containers:
       - name: react-container
-        image: saiki8/sa-react:latest
+        image: saiki8/sa-react:updated
+        # env:
+        # - name: REACT_APP_API_URL
+        #   value: "http://java-service.k8s.svc.cluster.local:80"
         env:
-        - name: JAVA_URL
-          value: "http://java-service.k8s.svc.cluster.local/sentiment"
+        - name: REACT_APP_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: java-config
+              key: REACT_APP_API_URL
         ports:
         - containerPort: 80
         resources:

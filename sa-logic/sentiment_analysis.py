@@ -6,6 +6,7 @@ import nltk
 
 # Download the NLTK data
 nltk.download('punkt')
+nltk.download('punkt_tab')
 
 app = Flask(__name__)
 CORS(app) 
